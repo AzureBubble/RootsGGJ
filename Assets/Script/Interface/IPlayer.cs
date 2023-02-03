@@ -4,4 +4,5 @@ using UnityEngine;
 
 public interface IPlayer
 {
+    void Sprint(Rigidbody2D rb);
 }

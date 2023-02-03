@@ -113,5 +113,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Sprint()
     {
+        player.Sprint(rb);
     }
 }
