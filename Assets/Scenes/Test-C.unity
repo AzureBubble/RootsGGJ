@@ -219,9 +219,9 @@ GameObject:
   - component: {fileID: 414096708}
   - component: {fileID: 414096707}
   - component: {fileID: 414096706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +239,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpForce: 8
+  layer:
+    serializedVersion: 2
+    m_Bits: 256
+  isGround: 0
+  footOffset: 0.5
+  groundDistance: 0.5
+  jumpCount: 1
+  JumpMutiplier: 1.5
+  fallMutiplier: 3
 --- !u!61 &414096707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -314,7 +324,7 @@ GameObject:
   - component: {fileID: 1460030215}
   - component: {fileID: 1460030218}
   - component: {fileID: 1460030217}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
