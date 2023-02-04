@@ -1,0 +1,214 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
+public class PlayerMovement : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    private float inputX;
+    private bool isGround;
+    private float speed;
+    private Animator anim;
+    private int health = 3;
+
+    [Header("Player 参数")]
+    public float walkSpeed;
+
+    public float runSpeed;
+    public float jumpForce;
+    public LayerMask layer;
+    public float footOffset;
+    public float groundDistance;
+    public int jumpCount = 1;
+    public float JumpMutiplier = 1.5f;
+    public float fallMutiplier = 3.0f;
+    public float attackSpeed;
+    public float coolTime;
+    public float lastTimer = -1f;
+    public Image cdImage;
+    public GameObject skillText;
+
+    private bool canJump;
+    private bool isAttack;
+    private bool longAttack;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        inputX = Input.GetAxis("Horizontal");
+        speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        CheckedGround();
+        if (canJump)
+        {
+            Jump();
+        }
+        Attack();
+        Flip();
+        ChangeCDImage();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        ChangeGraivity();
+    }
+
+    private void ChangeCDImage()
+    {
+        cdImage.fillAmount -= 1.0f / coolTime * Time.deltaTime;
+    }
+
+    private void Attack()
+    {
+        if (Input.GetButtonDown("Fire1") && !isAttack)
+        {
+            isAttack = true;
+            anim.SetTrigger("isAttack");
+        }
+        if (Input.GetButtonDown("Fire2") && longAttack)
+        {
+            if (Time.time >= (lastTimer + coolTime))
+            {
+                lastTimer = Time.time;
+                anim.SetTrigger("longAttack");
+                cdImage.fillAmount = 1;
+            }
+        }
+    }
+
+    public void ChangeAttack()
+    {
+        isAttack = false;
+    }
+
+    #region 检测地面
+
+    private void CheckedGround()
+    {
+        RaycastHit2D leftHit = Raycast(new Vector2(-footOffset, -0.5f), Vector2.down, groundDistance, layer);
+        RaycastHit2D rightHit = Raycast(new Vector2(footOffset, -0.5f), Vector2.down, groundDistance, layer);
+        if (leftHit || rightHit)
+        {
+            isGround = true;
+            jumpCount = 1;
+        }
+        else
+        {
+            isGround = false;
+        }
+    }
+
+    #endregion 检测地面
+
+    #region 射线检测
+
+    private RaycastHit2D Raycast(Vector2 offset, Vector2 direction, float length, LayerMask layer)
+    {
+        Vector2 pos = transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(pos + offset, direction, length, layer);
+        Color color = hit ? Color.red : Color.green;
+        Debug.DrawRay(pos + offset, direction * length, color);
+        return hit;
+    }
+
+    #endregion 射线检测
+
+    #region 跳跃重力修改
+
+    private void ChangeGraivity()
+    {
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMutiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (JumpMutiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    #endregion 跳跃重力修改
+
+    #region 移动
+
+    private void Move()
+    {
+        if (isAttack)
+        {
+            rb.velocity = new Vector2(transform.localScale.x * attackSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+        }
+        anim.SetBool("isGround", isGround);
+        anim.SetFloat("Horizontal", rb.velocity.x);
+    }
+
+    private void Flip()
+    {
+        if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    #endregion 移动
+
+    #region 跳跃
+
+    private void Jump()
+    {
+        var currentGraivity = rb;
+        if (Input.GetButtonDown("Jump") && isGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        else if (Input.GetButtonDown("Jump") && !isGround && jumpCount > 0)
+        {
+            jumpCount--;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+    }
+
+    #endregion 跳跃
+
+    public void SetJump()
+    {
+        canJump = true;
+    }
+
+    public void SetLongAttack()
+    {
+        longAttack = true;
+        StartCoroutine(SetTextActive());
+    }
+
+    private IEnumerator SetTextActive()
+    {
+        skillText.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        skillText.SetActive(false);
+    }
+
+    public void Damage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+}
