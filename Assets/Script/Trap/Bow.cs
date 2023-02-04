@@ -13,7 +13,7 @@ public class Bow : MonoBehaviour
     public const float g = 9.8f;
 
     /// <summary>
-    /// 速度越大整体曲线越接近于水平,不可为0
+    /// 锟劫讹拷越锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷越锟接斤拷锟斤拷水平,锟斤拷锟斤拷为0
     /// </summary>
     private float verticalSpeed;
 
@@ -51,8 +51,8 @@ public class Bow : MonoBehaviour
         float tempTime = tmepDistance / speed;
         float riseTime = tempTime / 2;
         verticalSpeed = g * riseTime;
-        // 设置初始旋转朝向目标,这样就不会因为初始旋转方向不同导致Translate运动方向不同
-        //transform.LookAt(new Vector2(transform.position.x - target.position.x, transform.position.y));
+        // 锟斤拷锟矫筹拷始锟斤拷转锟斤拷锟斤拷目锟斤拷,锟斤拷锟斤拷锟酵诧拷锟斤拷锟斤拷为锟斤拷始锟斤拷转锟斤拷锟斤拷同锟斤拷锟斤拷Translate锟剿讹拷锟斤拷锟斤拷同
+        transform.LookAt(target.position);
         StartCoroutine(move());
     }
 
