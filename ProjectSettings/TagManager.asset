@@ -21,8 +21,8 @@ TagManager:
   - Bullet
   - 
   - Trap
-  - PostProcessing
   - 
+  - Boss
   - 
   - 
   - 
@@ -58,7 +58,4 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 1930076153
-    locked: 0
-  - name: noLight
-    uniqueID: 2353452677
     locked: 0
