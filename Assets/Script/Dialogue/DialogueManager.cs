@@ -7,7 +7,9 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
 
     public GameObject dialogueBox;//显示或隐藏panel
-    public Text dialogueText, nameText;
+    public Text[] dialogueText;
+    public int dialogueIndex;
+    public Text nameText;
     //保证句子不显示在一行
     [TextArea(1, 3)] public string[] dialogueLines;
     [SerializeField] private int currentLine;
@@ -16,7 +18,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float scrollingSpeed;
 
     public Talkable talkable;//采用获取脚本的方法访问变量
+    public Talkable[] talkableEnum;
     //设计成单例模式挂在Dialoguepanel下
+    public int talkabIndex = 0;
+    public bool isTalking = false;
     private void Awake()
     {
         if (instance == null)
@@ -40,29 +45,47 @@ public class DialogueManager : MonoBehaviour
         currentLine = 0;
 
         CheckName();
+        dialogueText[1 - dialogueIndex].enabled = false;
+        dialogueText[dialogueIndex].enabled = true;
         SetTextAlign(_hasName);
 
-        StartCoroutine(ScrollingText());
+        StartCoroutine(ScrollingText(dialogueIndex));
 
         dialogueBox.SetActive(true);
         //因为单例模式如果没名字会沿用上一次调用的名字
         nameText.gameObject.SetActive(_hasName);
-
+       
        // PlayerMovement.instance.isTalking = true; //todo
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.L) && dialogueBox.activeInHierarchy == false&&(!isTalking))
+        {
+            talkable = talkableEnum[talkabIndex];
+            ShowDialogue(talkable.lines, talkable.hasName);
+            talkabIndex++;
+            isTalking = true;
+        }
         if (dialogueBox.activeInHierarchy)//只在激活panel时检测按下左键
         {
             //按下并松开左键
-            if (Input.GetMouseButtonUp(0) && !isScrolling)//Input.GetMouseButtonUp(0)
+            if (Input.GetKeyDown(KeyCode.L) && !isScrolling)//Input.GetMouseButtonUp(0)
             {
                 currentLine++;
                 if (currentLine < dialogueLines.Length)
                 {
+                 
                     CheckName();
-                    StartCoroutine(ScrollingText());//Letter by Letter Show
+                    dialogueText[1 - dialogueIndex].enabled = false;
+                    dialogueText[dialogueIndex].enabled = true;
+                    StartCoroutine(ScrollingText(dialogueIndex));//Letter by Letter Show
+                }
+                else
+                {
+                    dialogueBox.SetActive(false);//Box HIDE MARKER END Dialogue
+                    isTalking = false;
+                    //PlayerMovement.instance.isTalking = false;
                 }
             }
         }
@@ -72,9 +95,14 @@ public class DialogueManager : MonoBehaviour
     private void SetTextAlign(bool _hasName)
     {
         if (_hasName)
-            dialogueText.alignment = (UnityEngine.TextAnchor)TextAlignment.Left;
+        {
+            dialogueIndex = 1;
+            dialogueText[dialogueIndex].alignment = (UnityEngine.TextAnchor)TextAlignment.Left;
+        }
         else
-            dialogueText.alignment = (UnityEngine.TextAnchor)TextAlignment.Center;
+        {
+           
+        }
     }
 
     //检查对话内容是否含有对话者的名字
@@ -82,20 +110,25 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueLines[currentLine].StartsWith("n-"))
         {
-            nameText.text = dialogueLines[currentLine].Replace("n-", "");//在NameText处显示名字，并且去除标记n-
-            currentLine++;//跳过显示名字的这一行
+            dialogueLines[currentLine] = dialogueLines[currentLine].Replace("n-", "");//在NameText处显示名字，并且去除标记n-
+            dialogueIndex = 1;
+            //currentLine++;//跳过显示名字的这一行
+        }
+        else
+        {
+            dialogueIndex = 0;
         }
     }
 
     //字母滚动效果
-    private IEnumerator ScrollingText()
+    private IEnumerator ScrollingText(int index)
     {
         isScrolling = true;
-        dialogueText.text = "";//清空
+        dialogueText[index].text = "";//清空
 
         foreach (char letter in dialogueLines[currentLine].ToCharArray())
         {
-            dialogueText.text += letter;//HELLO => H->E->L->L->O//MARKER Letter by Letter Show
+            dialogueText[index].text += letter;//HELLO => H->E->L->L->O//MARKER Letter by Letter Show
             yield return new WaitForSeconds(scrollingSpeed);
         }
 
