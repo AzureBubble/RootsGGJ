@@ -1463,7 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cam: {fileID: 798885425}
-  moveRate: 0.5
+  moveRate: 0.3
   unlockY: 0
 --- !u!1 &1175385429
 GameObject:
@@ -3710,7 +3710,6 @@ GameObject:
   - component: {fileID: 8663196117818238382}
   - component: {fileID: 8663196117818238380}
   - component: {fileID: 8663196117818238381}
-  - component: {fileID: 8663196117818238384}
   m_Layer: 0
   m_Name: BackGroundDetails
   m_TagString: Untagged
@@ -3718,21 +3717,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8663196117818238384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663196117818238383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133d4fd2def9c764082ae62f9b52f436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam: {fileID: 798885425}
-  moveRate: 0.2
-  unlockY: 0
 --- !u!1839735485 &8663196118086978051
 Tilemap:
   m_ObjectHideFlags: 0
@@ -3930,7 +3914,6 @@ GameObject:
   - component: {fileID: 8663196118086978053}
   - component: {fileID: 8663196118086978051}
   - component: {fileID: 8663196118086978052}
-  - component: {fileID: 8663196118086978055}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -3938,21 +3921,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8663196118086978055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663196118086978054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133d4fd2def9c764082ae62f9b52f436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam: {fileID: 798885425}
-  moveRate: 0.3
-  unlockY: 0
 --- !u!4 &8663196118346951534
 Transform:
   m_ObjectHideFlags: 0
@@ -6557,7 +6525,6 @@ GameObject:
   - component: {fileID: 8663196118894670560}
   - component: {fileID: 8663196118894670494}
   - component: {fileID: 8663196118894670495}
-  - component: {fileID: 8663196118894670562}
   m_Layer: 0
   m_Name: ForeGround
   m_TagString: Untagged
@@ -6565,18 +6532,3 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8663196118894670562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663196118894670561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133d4fd2def9c764082ae62f9b52f436, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam: {fileID: 798885425}
-  moveRate: 0.1
-  unlockY: 0
