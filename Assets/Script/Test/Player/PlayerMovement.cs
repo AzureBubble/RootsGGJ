@@ -1,15 +1,23 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float inputX;
     private bool isGround;
-    private IPlayer player;
+    private float speed;
+    private Animator anim;
+    private int health = 3;
 
     [Header("Player 参数")]
-    public float speed;
+    public float walkSpeed;
 
+    public float runSpeed;
     public float jumpForce;
     public LayerMask layer;
     public float footOffset;
@@ -17,23 +25,68 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount = 1;
     public float JumpMutiplier = 1.5f;
     public float fallMutiplier = 3.0f;
+    public float attackSpeed;
+    public float coolTime;
+    public float lastTimer = -1f;
+    public Image cdImage;
+    public GameObject skillText;
+
+    private bool canJump;
+    private bool isAttack;
+    private bool longAttack;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         inputX = Input.GetAxis("Horizontal");
+        speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
         CheckedGround();
-        Jump();
+        if (canJump)
+        {
+            Jump();
+        }
+        Attack();
+        Flip();
+        ChangeCDImage();
     }
 
     private void FixedUpdate()
     {
         Move();
         ChangeGraivity();
+    }
+
+    private void ChangeCDImage()
+    {
+        cdImage.fillAmount -= 1.0f / coolTime * Time.deltaTime;
+    }
+
+    private void Attack()
+    {
+        if (Input.GetButtonDown("Fire1") && !isAttack)
+        {
+            isAttack = true;
+            anim.SetTrigger("isAttack");
+        }
+        if (Input.GetButtonDown("Fire2") && longAttack)
+        {
+            if (Time.time >= (lastTimer + coolTime))
+            {
+                lastTimer = Time.time;
+                anim.SetTrigger("longAttack");
+                cdImage.fillAmount = 1;
+            }
+        }
+    }
+
+    public void ChangeAttack()
+    {
+        isAttack = false;
     }
 
     #region 检测地面
@@ -88,7 +141,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+        if (isAttack)
+        {
+            rb.velocity = new Vector2(transform.localScale.x * attackSpeed, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
+        }
+        anim.SetBool("isGround", isGround);
+        anim.SetFloat("Horizontal", rb.velocity.x);
+    }
+
+    private void Flip()
+    {
+        if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     #endregion 移动
@@ -111,8 +185,30 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion 跳跃
 
-    private void Sprint()
+    public void SetJump()
     {
-        player.Sprint(rb);
+        canJump = true;
+    }
+
+    public void SetLongAttack()
+    {
+        longAttack = true;
+        StartCoroutine(SetTextActive());
+    }
+
+    private IEnumerator SetTextActive()
+    {
+        skillText.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        skillText.SetActive(false);
+    }
+
+    public void Damage()
+    {
+        health--;
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
