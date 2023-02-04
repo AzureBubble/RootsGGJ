@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class turret : MonoBehaviour
@@ -14,6 +15,13 @@ public class turret : MonoBehaviour
 
     public float timer;
     private Vector2 direction;
+    private AnimatorStateInfo info;
+    private bool isDead;
+
+    private void OnEnable()
+    {
+        target = null;
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -24,7 +32,7 @@ public class turret : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (target != null)
+        if (target != null && !isDead)
         {
             Shoot();
         }
@@ -52,22 +60,41 @@ public class turret : MonoBehaviour
     private void Fire()
     {
         animator.SetTrigger("isAttack");
-        GameObject bow = ObjectPool.Instance.GetObject(bowPrefab);
-        bow.transform.position = muzzple.position;
-        bow.transform.localRotation = transform.localRotation;
-        bow.GetComponent<Bow>().Set(target.transform);
+        info = animator.GetCurrentAnimatorStateInfo(0);
+        if (info.normalizedTime >= .95f)
+        {
+            GameObject bow = ObjectPool.Instance.GetObject(bowPrefab);
+            bow.transform.position = muzzple.position;
+            bow.transform.localRotation = transform.localRotation;
+            bow.GetComponent<Bow>().Set(target.transform);
+        }
     }
 
     public void Damage(int damage)
     {
-        health--;
+        health -= damage;
         if (health <= 0)
         {
-            animator.SetBool("isDead", true);
+            animator.SetTrigger("isDead");
         }
     }
 
+    private void Dead()
+    {
+        //transform.GetComponentInChildren<Collider2D>().enabled = false;
+
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            target = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

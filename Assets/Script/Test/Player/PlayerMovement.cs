@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGround;
     private float speed;
     private Animator anim;
-    private int health = 3;
+    private int maxHealth = 3;
+    private int currentHealth;
 
     [Header("Player ²ÎÊý")]
     public float walkSpeed;
@@ -30,10 +31,23 @@ public class PlayerMovement : MonoBehaviour
     public float lastTimer = -1f;
     public Image cdImage;
     public GameObject skillText;
+    public Image healthBar;
+    public Image skillImage;
+    public Sprite skillIcon;
+    public float hitSpeed = 1.0f;
+    public Vector2 hitDirection;
+    private float lerpSpeed = 3;
+    public GameObject playerB;
 
     private bool canJump;
     private bool isAttack;
     private bool longAttack;
+    private bool isHit;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     private void Start()
     {
@@ -52,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
         }
         Attack();
         Flip();
-        ChangeCDImage();
+        //ChangeCDImage();
+        //ChangeHealthBar();
     }
 
     private void FixedUpdate()
@@ -64,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeCDImage()
     {
         cdImage.fillAmount -= 1.0f / coolTime * Time.deltaTime;
+    }
+
+    private void ChangeHealthBar()
+    {
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, (currentHealth / maxHealth), lerpSpeed * Time.deltaTime);
     }
 
     private void Attack()
@@ -145,6 +165,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(transform.localScale.x * attackSpeed, rb.velocity.y);
         }
+        else if (isHit)
+        {
+            rb.velocity = -hitDirection * hitSpeed;
+            isHit = false;
+        }
         else
         {
             rb.velocity = new Vector2(inputX * speed, rb.velocity.y);
@@ -188,12 +213,18 @@ public class PlayerMovement : MonoBehaviour
     public void SetJump()
     {
         canJump = true;
+        StartCoroutine(SetTextActive());
     }
 
     public void SetLongAttack()
     {
         longAttack = true;
-        StartCoroutine(SetTextActive());
+        skillImage.sprite = skillIcon;
+        playerB.SetActive(true);
+
+        playerB.transform.position = gameObject.transform.position;
+        playerB.transform.rotation = gameObject.transform.rotation;
+        gameObject.SetActive(false);
     }
 
     private IEnumerator SetTextActive()
@@ -203,10 +234,13 @@ public class PlayerMovement : MonoBehaviour
         skillText.SetActive(false);
     }
 
-    public void Damage()
+    public void Damage(Vector2 direction)
     {
-        health--;
-        if (health <= 0)
+        isHit = true;
+        currentHealth -= 1;
+        hitDirection = direction;
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

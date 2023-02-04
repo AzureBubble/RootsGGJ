@@ -6,10 +6,26 @@ public class Skill : MonoBehaviour
 {
     private Dictionary<string, bool> skillDict = new Dictionary<string, bool>();
 
+    private static Skill instance;   // µ¥Àý
+
+    public Skill Instance
+    {
+        get { return instance; }
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
-        DontDestroyOnLoad(this);
     }
 
     // Update is called once per frame
