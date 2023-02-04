@@ -55,7 +55,15 @@ public class Bow : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMovement>().Damage();
+            if (transform.localScale.x < 0)
+            {
+                collision.GetComponent<PlayerMovement>().Damage(Vector2.right);
+            }
+            else if (transform.localScale.x > 0)
+            {
+                collision.GetComponent<PlayerMovement>().Damage(Vector2.left);
+            }
+            //collision.gameObject.GetComponent<PlayerMovement>().Damage();
             ObjectPool.Instance.PushObject(gameObject);
         }
     }
