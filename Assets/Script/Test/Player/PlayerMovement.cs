@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttack;
     private bool longAttack;
     private bool isHit;
+    private bool isTalk;
+    private bool isDead;
 
     private void Awake()
     {
@@ -57,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         inputX = Input.GetAxis("Horizontal");
         speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
         CheckedGround();
@@ -72,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead && isTalk) return;
         Move();
         ChangeGraivity();
     }
@@ -242,7 +246,23 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
+            isDead = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+    }
+
+    public void SetIsTalkTrue()
+    {
+        isTalk = true;
+    }
+
+    public void SetIsTalkFalse()
+    {
+        isTalk = false;
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
     }
 }

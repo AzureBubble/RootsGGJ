@@ -47,7 +47,7 @@ public class Bow : MonoBehaviour
         float riseTime = tempTime / 2;
         verticalSpeed = g * riseTime;
         // 设置初始旋转朝向目标,这样就不会因为初始旋转方向不同导致Translate运动方向不同
-        //transform.LookAt(target.position);
+        transform.LookAt(target.position);
         StartCoroutine(move());
     }
 
