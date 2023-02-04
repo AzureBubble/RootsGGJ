@@ -86,6 +86,12 @@ MonoBehaviour:
   lastTimer: -10
   cdImage: {fileID: 0}
   skillText: {fileID: 0}
+  healthBar: {fileID: 0}
+  skillImage: {fileID: 0}
+  skillIcon: {fileID: 21300000, guid: 08f4dae172ddabc42975de9c430a30de, type: 3}
+  hitSpeed: 30
+  hitDirection: {x: 0, y: 0}
+  playerB: {fileID: 0}
 --- !u!212 &8384384506026170668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -184,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8384384506949655740}
   - component: {fileID: 8384384506949655741}
+  - component: {fileID: 185998460}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -222,3 +229,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0.39024827, y: -0.5326356}
   m_Size: {x: 1.0695524, y: 0.26796165}
   m_Direction: 1
+--- !u!114 &185998460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384384506949655731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f719bbe3550a9c4f85f55d3ef1dbb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
