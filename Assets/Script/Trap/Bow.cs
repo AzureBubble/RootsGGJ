@@ -8,6 +8,7 @@ public class Bow : MonoBehaviour
 {
     private Transform target;
     public float speed;
+    private Animator animator;
 
     public const float g = 9.8f;
 
@@ -17,6 +18,11 @@ public class Bow : MonoBehaviour
     private float verticalSpeed;
 
     //private float time;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private IEnumerator move()
     {
@@ -34,7 +40,6 @@ public class Bow : MonoBehaviour
                 transform.Translate(-speed * Time.fixedDeltaTime, 0, 0, Space.World);
             }
             transform.Translate(0, test * Time.fixedDeltaTime, 0, Space.World);
-
             yield return null;
         }
     }
@@ -47,7 +52,7 @@ public class Bow : MonoBehaviour
         float riseTime = tempTime / 2;
         verticalSpeed = g * riseTime;
         // 设置初始旋转朝向目标,这样就不会因为初始旋转方向不同导致Translate运动方向不同
-        transform.LookAt(target.position);
+        //transform.LookAt(new Vector2(transform.position.x - target.position.x, transform.position.y));
         StartCoroutine(move());
     }
 
@@ -64,6 +69,10 @@ public class Bow : MonoBehaviour
                 collision.GetComponent<PlayerMovement>().Damage(Vector2.left);
             }
             //collision.gameObject.GetComponent<PlayerMovement>().Damage();
+            ObjectPool.Instance.PushObject(gameObject);
+        }
+        if (collision.CompareTag("Ground"))
+        {
             ObjectPool.Instance.PushObject(gameObject);
         }
     }

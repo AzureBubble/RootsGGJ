@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGround;
     private float speed;
     private Animator anim;
-    private int maxHealth = 3;
+    private int maxHealth = 4;
     private int currentHealth;
 
     [Header("Player ²ÎÊý")]

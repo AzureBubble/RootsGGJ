@@ -23,11 +23,29 @@ public class PlayerAttack : MonoBehaviour
             //    collision.GetComponent<Turret1>().GetHit(Vector2.left);
             //}
         }
+        if (collision.CompareTag("Boss") && canDamage)
+        {
+            canDamage = false;
+            collision.gameObject.GetComponentInParent<Boss>().GetHit(damage);
+            Debug.Log(damage);
+            //if (transform.localScale.x > 0)
+            //{
+            //    collision.GetComponent<Turret1>().GetHit(Vector2.right);
+            //}
+            //else if (transform.localScale.x < 0)
+            //{
+            //    collision.GetComponent<Turret1>().GetHit(Vector2.left);
+            //}
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("turret") && !canDamage)
+        {
+            canDamage = true;
+        }
+        if (collision.CompareTag("Boss") && !canDamage)
         {
             canDamage = true;
         }
