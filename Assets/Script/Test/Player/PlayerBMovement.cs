@@ -15,7 +15,7 @@ public class PlayerBMovement : MonoBehaviour
     private int maxHealth = 4;
     private int currentHealth;
 
-    [Header("Player ²ÎÊý")]
+    [Header("Player ï¿½ï¿½ï¿½ï¿½")]
     public float walkSpeed;
 
     public float runSpeed;
@@ -109,7 +109,7 @@ public class PlayerBMovement : MonoBehaviour
         isAttack = false;
     }
 
-    #region ¼ì²âµØÃæ
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void CheckedGround()
     {
@@ -126,9 +126,9 @@ public class PlayerBMovement : MonoBehaviour
         }
     }
 
-    #endregion ¼ì²âµØÃæ
+    #endregion ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    #region ÉäÏß¼ì²â
+    #region ï¿½ï¿½ï¿½ß¼ï¿½ï¿½
 
     private RaycastHit2D Raycast(Vector2 offset, Vector2 direction, float length, LayerMask layer)
     {
@@ -139,9 +139,9 @@ public class PlayerBMovement : MonoBehaviour
         return hit;
     }
 
-    #endregion ÉäÏß¼ì²â
+    #endregion ï¿½ï¿½ï¿½ß¼ï¿½ï¿½
 
-    #region ÌøÔ¾ÖØÁ¦ÐÞ¸Ä
+    #region ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 
     private void ChangeGraivity()
     {
@@ -155,9 +155,9 @@ public class PlayerBMovement : MonoBehaviour
         }
     }
 
-    #endregion ÌøÔ¾ÖØÁ¦ÐÞ¸Ä
+    #endregion ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 
-    #region ÒÆ¶¯
+    #region ï¿½Æ¶ï¿½
 
     private void Move()
     {
@@ -190,9 +190,9 @@ public class PlayerBMovement : MonoBehaviour
         }
     }
 
-    #endregion ÒÆ¶¯
+    #endregion ï¿½Æ¶ï¿½
 
-    #region ÌøÔ¾
+    #region ï¿½ï¿½Ô¾
 
     private void Jump()
     {
@@ -208,7 +208,7 @@ public class PlayerBMovement : MonoBehaviour
         }
     }
 
-    #endregion ÌøÔ¾
+    #endregion ï¿½ï¿½Ô¾
 
     public void SetJump()
     {

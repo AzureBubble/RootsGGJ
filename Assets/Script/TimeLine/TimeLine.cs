@@ -63,5 +63,6 @@ namespace Cinemachine.Examples
         {
             isDead = false;
         }
+       
     }
 }

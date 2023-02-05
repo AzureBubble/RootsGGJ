@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using Cinemachine.Examples;
 using Cinemachine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class DialogueManager : MonoBehaviour
     public Transform playerTranform;
     public CinemachineVirtualCamera vcam1;
     public CinemachineVirtualCamera vcam2;
+    public PlayerMovement player;
 
     private void Awake()
     {
@@ -75,6 +77,10 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameObject.FindObjectOfType<PlayerMovement>() != null)
+        {
+            player = GameObject.FindObjectOfType<PlayerMovement>();
+        }
         if (timeLine.onCam2 == true && dialogueBox.activeInHierarchy == false && (!isTalking))
         {
             talkable = talkableEnum[talkabIndex];
@@ -105,6 +111,14 @@ public class DialogueManager : MonoBehaviour
                     Create();
 
                     //PlayerMovement.instance.isTalking = false;
+                    //if(talkabIndex >=2&& player.bossIsDead == true)
+                    if (talkabIndex >= 2 && player.bossIsDead == true)
+                    {
+                        Invoke("Change", 4.0f);
+                    }
+                    else if(talkabIndex >= 2){
+                        talkabIndex = 2;
+                    }
                 }
             }
         }
@@ -125,13 +139,15 @@ public class DialogueManager : MonoBehaviour
             case 2:
                 GameObject player2 = Instantiate(playerBPrefab, playerTranform.position, Quaternion.identity);
                 jumpPrefab.SetActive(true);
+                player2.gameObject.GetComponent<PlayerMovement>().SetJump();
                 vcam1.Follow = player2.transform;
                 vcam2.Follow = player2.transform;
                 break;
 
             case 3:
                 GameObject player3 = Instantiate(playerBPrefab, playerTranform.position, Quaternion.identity);
-
+                player3.gameObject.GetComponent<PlayerMovement>().SetJump();
+                player3.gameObject.GetComponent<PlayerMovement>().maxHealth = 10000;
                 vcam1.Follow = player3.transform;
                 vcam2.Follow = player3.transform;
                 break;
@@ -184,5 +200,9 @@ public class DialogueManager : MonoBehaviour
     public void SetPlayer(GameObject gameObject)
     {
         playerDPrefab = gameObject;
+    }
+    private void change()
+    {
+        SceneManager.LoadScene("end", LoadSceneMode.Single); ;
     }
 }
