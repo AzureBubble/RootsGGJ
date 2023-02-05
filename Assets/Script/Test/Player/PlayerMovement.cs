@@ -1,3 +1,4 @@
+using Cinemachine.Examples;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,12 +44,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttack;
     private bool longAttack;
     private bool isHit;
-    private bool isTalk;
-    private bool isDead;
+    [SerializeField] private bool isTalk;
+    [SerializeField] private bool isDead;
+    private TimeLine timeLine;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        timeLine = GameObject.Find("TimeLineFather").GetComponent<TimeLine>();
     }
 
     private void Start()
@@ -75,7 +78,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDead && isTalk) return;
+        if (isDead && isTalk)
+        {
+            return;
+        }
         Move();
         ChangeGraivity();
     }
@@ -247,6 +253,9 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
+            timeLine.SetIsDead();
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

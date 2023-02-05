@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine.Examples;
+using Cinemachine;
+
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
@@ -10,8 +12,10 @@ public class DialogueManager : MonoBehaviour
     public Text[] dialogueText;
     public int dialogueIndex;
     public Text nameText;
+
     //保证句子不显示在一行
     [TextArea(1, 3)] public string[] dialogueLines;
+
     [SerializeField] private int currentLine;
 
     private bool isScrolling;//禁止没有滚完玩家就跳对话
@@ -19,10 +23,18 @@ public class DialogueManager : MonoBehaviour
 
     public Talkable talkable;//采用获取脚本的方法访问变量
     public Talkable[] talkableEnum;
+
     //设计成单例模式挂在Dialoguepanel下
     public int talkabIndex = 0;
+
     public bool isTalking = false;
     public TimeLine timeLine;
+
+    public GameObject playerPrefab;
+    public Transform playerTranform;
+    public CinemachineVirtualCamera vcam1;
+    public CinemachineVirtualCamera vcam2;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,7 +48,7 @@ public class DialogueManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
+        //playerTranform = GameObject.Find("PlayerA").transform;
     }
 
     //打开对话窗口，文字滚动
@@ -55,19 +67,18 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(true);
         //因为单例模式如果没名字会沿用上一次调用的名字
         nameText.gameObject.SetActive(_hasName);
-       
-       // PlayerMovement.instance.isTalking = true; //todo
+
+        // PlayerMovement.instance.isTalking = true; //todo
     }
 
     private void Update()
     {
-        if (timeLine.onCam2 == true && dialogueBox.activeInHierarchy == false&&(!isTalking))
+        if (timeLine.onCam2 == true && dialogueBox.activeInHierarchy == false && (!isTalking))
         {
             talkable = talkableEnum[talkabIndex];
             ShowDialogue(talkable.lines, talkable.hasName);
             talkabIndex++;
             isTalking = true;
- 
         }
         if (dialogueBox.activeInHierarchy)//只在激活panel时检测按下左键
         {
@@ -87,6 +98,12 @@ public class DialogueManager : MonoBehaviour
                     dialogueBox.SetActive(false);//Box HIDE MARKER END Dialogue
                     isTalking = false;
                     timeLine.changeToCam1 = true;
+                    timeLine.SetIsDeadFalse();
+                    GameObject player = Instantiate(playerPrefab, playerTranform.position, Quaternion.identity);
+
+                    vcam1.Follow = player.transform;
+                    vcam2.Follow = player.transform;
+
                     //PlayerMovement.instance.isTalking = false;
                 }
             }
@@ -103,7 +120,6 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-           
         }
     }
 
@@ -136,5 +152,4 @@ public class DialogueManager : MonoBehaviour
 
         isScrolling = false;
     }
-
 }

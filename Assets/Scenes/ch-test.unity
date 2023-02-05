@@ -981,6 +981,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8384384506026170661, guid: bb22a9328def967448a66ec7444e3a59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8384384506026170662, guid: bb22a9328def967448a66ec7444e3a59, type: 3}
       propertyPath: cdImage
       value: 

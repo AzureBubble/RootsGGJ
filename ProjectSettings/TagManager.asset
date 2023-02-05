@@ -59,3 +59,6 @@ TagManager:
   - name: ForeGround
     uniqueID: 1930076153
     locked: 0
+  - name: FFG
+    uniqueID: 4089981649
+    locked: 0

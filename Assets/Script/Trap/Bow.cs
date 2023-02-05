@@ -52,7 +52,7 @@ public class Bow : MonoBehaviour
         float riseTime = tempTime / 2;
         verticalSpeed = g * riseTime;
         // ���ó�ʼ��ת����Ŀ��,�����Ͳ�����Ϊ��ʼ��ת����ͬ����Translate�˶�����ͬ
-        transform.LookAt(target.position);
+        //transform.LookAt(target.position);
         StartCoroutine(move());
     }
 
