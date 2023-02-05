@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Cinemachine.Examples;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     //设计成单例模式挂在Dialoguepanel下
     public int talkabIndex = 0;
     public bool isTalking = false;
+    public TimeLine timeLine;
     private void Awake()
     {
         if (instance == null)
@@ -60,12 +61,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) && dialogueBox.activeInHierarchy == false&&(!isTalking))
+        if (timeLine.onCam2 == true && dialogueBox.activeInHierarchy == false&&(!isTalking))
         {
             talkable = talkableEnum[talkabIndex];
             ShowDialogue(talkable.lines, talkable.hasName);
             talkabIndex++;
             isTalking = true;
+ 
         }
         if (dialogueBox.activeInHierarchy)//只在激活panel时检测按下左键
         {
@@ -75,7 +77,6 @@ public class DialogueManager : MonoBehaviour
                 currentLine++;
                 if (currentLine < dialogueLines.Length)
                 {
-                 
                     CheckName();
                     dialogueText[1 - dialogueIndex].enabled = false;
                     dialogueText[dialogueIndex].enabled = true;
@@ -85,6 +86,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     dialogueBox.SetActive(false);//Box HIDE MARKER END Dialogue
                     isTalking = false;
+                    timeLine.changeToCam1 = true;
                     //PlayerMovement.instance.isTalking = false;
                 }
             }
