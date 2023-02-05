@@ -1078,6 +1078,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerA
       objectReference: {fileID: 0}
+    - target: {fileID: 8011410187409669679, guid: f6ff1094428faf1478aea81fc40faa5e, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8011410188617710516, guid: f6ff1094428faf1478aea81fc40faa5e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ff1094428faf1478aea81fc40faa5e, type: 3}
 --- !u!43 &214080536
@@ -4537,6 +4545,10 @@ PrefabInstance:
       propertyPath: parameter.patrolPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1367007538}
+    - target: {fileID: 5945725516627311771, guid: 8faf6f6ebb6098e41bf6b4f59f79e989, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8faf6f6ebb6098e41bf6b4f59f79e989, type: 3}
 --- !u!1839735485 &8663196117818238380

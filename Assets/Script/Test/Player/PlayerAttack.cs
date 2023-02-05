@@ -37,6 +37,27 @@ public class PlayerAttack : MonoBehaviour
             //    collision.GetComponent<Turret1>().GetHit(Vector2.left);
             //}
         }
+        if (collision.CompareTag("Enemy") && canDamage)
+        {
+            canDamage = false;
+            if (transform.localScale.x > 0)
+            {
+                collision.GetComponent<FSM>().GetHit(Vector2.right);
+            }
+            else if (transform.localScale.x < 0)
+            {
+                collision.GetComponent<FSM>().GetHit(Vector2.left);
+            }
+            Debug.Log(damage);
+            //if (transform.localScale.x > 0)
+            //{
+            //    collision.GetComponent<Turret1>().GetHit(Vector2.right);
+            //}
+            //else if (transform.localScale.x < 0)
+            //{
+            //    collision.GetComponent<Turret1>().GetHit(Vector2.left);
+            //}
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,6 +67,10 @@ public class PlayerAttack : MonoBehaviour
             canDamage = true;
         }
         if (collision.CompareTag("Boss") && !canDamage)
+        {
+            canDamage = true;
+        }
+        if (collision.CompareTag("Enemy") && !canDamage)
         {
             canDamage = true;
         }
