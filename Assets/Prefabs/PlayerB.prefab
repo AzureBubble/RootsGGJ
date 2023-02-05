@@ -277,5 +277,7 @@ MonoBehaviour:
   hitSpeed: 30
   hitDirection: {x: 0, y: 0}
   playerB: {fileID: 7090568754400391245}
+  cam1: {fileID: 0}
+  cam2: {fileID: 0}
   isTalk: 0
   isDead: 0
