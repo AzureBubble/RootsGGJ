@@ -159,7 +159,7 @@ public class BossHitState : IState
     private BossParmeter parameter;
 
     private AnimatorStateInfo info;
-    //private AnimatorStateInfo hitInfo;
+    private AnimatorStateInfo hitInfo;
 
     public BossHitState(Boss manager)
     {
@@ -170,19 +170,33 @@ public class BossHitState : IState
     public void OnEnter()
     {
         parameter.health -= parameter.damage;
+        parameter.animator.Play("hit");
+        parameter.hitAnimation.SetTrigger("hit");
     }
 
     public void OnUpdate()
     {
-        //info = parameter.animator.GetCurrentAnimatorStateInfo(0);
+        info = parameter.animator.GetCurrentAnimatorStateInfo(0);
         //parameter.rb.velocity = parameter.direction * parameter.hitSpeed;
         if (parameter.health <= 0)
         {
             manager.TransitionState(BossType.Death);
         }
-        parameter.target = GameObject.FindWithTag("Player").transform;
+        if (info.normalizedTime >= .95f)
+        {
+            parameter.target = GameObject.FindWithTag("Player").transform;
 
-        manager.TransitionState(BossType.Idle);
+            manager.TransitionState(BossType.Idle);
+        }
+        //info = parameter.animator.GetCurrentAnimatorStateInfo(0);
+        //parameter.rb.velocity = parameter.direction * parameter.hitSpeed;
+        //if (parameter.health <= 0)
+        //{
+        //    manager.TransitionState(BossType.Death);
+        //}
+        //parameter.target = GameObject.FindWithTag("Player").transform;
+
+        //manager.TransitionState(BossType.Idle);
     }
 
     public void OnExit()

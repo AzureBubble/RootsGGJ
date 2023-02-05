@@ -1,3 +1,4 @@
+using Cinemachine;
 using Cinemachine.Examples;
 using System.Collections;
 using UnityEngine;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 hitDirection;
     private float lerpSpeed = 3;
     public GameObject playerB;
+    public CinemachineVirtualCamera cam1, cam2;
 
     private bool canJump;
     private bool isAttack;
@@ -229,9 +231,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetLongAttack()
     {
         longAttack = true;
-        skillImage.sprite = skillIcon;
+        //skillImage.sprite = skillIcon;
         playerB.SetActive(true);
-
+        //GameObject playerC = Instantiate(playerB);
+        cam1.Follow = playerB.transform;
+        cam2.Follow = playerB.transform;
         playerB.transform.position = gameObject.transform.position;
         playerB.transform.rotation = gameObject.transform.rotation;
         gameObject.SetActive(false);

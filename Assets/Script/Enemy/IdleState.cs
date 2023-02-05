@@ -96,7 +96,7 @@ public class patrolState : IState
         {
             manager.TransitionState(EnemyState.Hit);
         }
-        Debug.Log(Vector2.Distance(manager.transform.position, parameter.patrolPoints[patrolPosition].position));
+        //Debug.Log(Vector2.Distance(manager.transform.position, parameter.patrolPoints[patrolPosition].position));
         // 敌人位置与目标巡逻点的位置小于0.1f时
         if (Vector2.Distance(manager.transform.position, parameter.patrolPoints[patrolPosition].position) < 1f)
         {
@@ -289,7 +289,7 @@ public class hitState : IState
     {
         parameter.animator.Play("hit");
         parameter.hitAnimation.SetTrigger("hit");
-        parameter.health--;
+        parameter.health -= parameter.damage;
     }
 
     public void OnUpdate()

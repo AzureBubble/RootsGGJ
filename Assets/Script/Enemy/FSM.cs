@@ -33,6 +33,7 @@ public class EnemyParmeter
     public float hitSpeed;
     public Rigidbody2D rb;
     public Animator hitAnimation;
+    public int damage;
 }
 
 public class FSM : MonoBehaviour
@@ -82,6 +83,14 @@ public class FSM : MonoBehaviour
     public void GetHit(Vector2 direction)
     {
         transform.localScale = new Vector3(-direction.x, 1, 1);
+        parameter.direction = direction;
+        parameter.getHit = true;
+    }
+
+    public void GetHit(Vector2 direction, int damage)
+    {
+        transform.localScale = new Vector3(-direction.x, 1, 1);
+        parameter.damage = damage;
         parameter.direction = direction;
         parameter.getHit = true;
     }

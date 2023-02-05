@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine.Examples;
 using Cinemachine;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -30,7 +31,8 @@ public class DialogueManager : MonoBehaviour
     public bool isTalking = false;
     public TimeLine timeLine;
 
-    public GameObject playerPrefab;
+    public GameObject playerAPrefab, playerBPrefab, playerCPrefab, playerDPrefab;
+    public GameObject swordPrefab, jumpPrefab;
     public Transform playerTranform;
     public CinemachineVirtualCamera vcam1;
     public CinemachineVirtualCamera vcam2;
@@ -100,14 +102,39 @@ public class DialogueManager : MonoBehaviour
                     isTalking = false;
                     timeLine.changeToCam1 = true;
                     timeLine.SetIsDeadFalse();
-                    GameObject player = Instantiate(playerPrefab, playerTranform.position, Quaternion.identity);
-
-                    vcam1.Follow = player.transform;
-                    vcam2.Follow = player.transform;
+                    Create();
 
                     //PlayerMovement.instance.isTalking = false;
                 }
             }
+        }
+    }
+
+    private void Create()
+    {
+        switch (talkabIndex)
+        {
+            case 1:
+                //GameObject player1 = Instantiate(playerAPrefab, playerTranform.position, Quaternion.identity);
+                playerCPrefab.SetActive(true);
+                swordPrefab.SetActive(true);
+                vcam1.Follow = playerCPrefab.transform;
+                vcam2.Follow = playerCPrefab.transform;
+                break;
+
+            case 2:
+                GameObject player2 = Instantiate(playerBPrefab, playerTranform.position, Quaternion.identity);
+                jumpPrefab.SetActive(true);
+                vcam1.Follow = player2.transform;
+                vcam2.Follow = player2.transform;
+                break;
+
+            case 3:
+                GameObject player3 = Instantiate(playerBPrefab, playerTranform.position, Quaternion.identity);
+
+                vcam1.Follow = player3.transform;
+                vcam2.Follow = player3.transform;
+                break;
         }
     }
 
@@ -152,5 +179,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         isScrolling = false;
+    }
+
+    public void SetPlayer(GameObject gameObject)
+    {
+        playerDPrefab = gameObject;
     }
 }

@@ -38,6 +38,7 @@ public class BossParmeter
     public int count = 0;
     public Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
+    public Animator hitAnimation;
 }
 
 public class Boss : MonoBehaviour
