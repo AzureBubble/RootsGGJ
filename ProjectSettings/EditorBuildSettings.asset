@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test-UI.unity
     guid: 33ede6efcd001c3488ce3befad952c22
+  - enabled: 1
+    path: Assets/Scenes/Menu1.unity
+    guid: bf79f5a7ea322184a930a05a51b3ea80
+  - enabled: 1
+    path: Assets/Scenes/sktest_urp.unity
+    guid: cfe3ae6b1129ca64ab852648da9cb0a8
   m_configObjects: {}
