@@ -36,9 +36,9 @@ public class Menu : MonoBehaviour
         {
            
             //按下并松开左键
-            if (Input.GetKeyDown(KeyCode.Space) && !isScrolling)
+            if (Input.GetMouseButtonUp(0) && !isScrolling)
             {
-                AudioManager.instance.PlaySound2D("ButtonTip");
+                AudioManager.instance.PlaySound2D("dialogue");
                 currentLine++;
 
                 if (currentLine < dialogueLines.Length)
@@ -64,6 +64,7 @@ public class Menu : MonoBehaviour
     public void showStoryLine()
     {
          dialogueBox.SetActive(true);
+        AudioManager.instance.PlaySound2D("dialogue");
         nowImage.sprite = needImage[currentLine];
         StartCoroutine(ScrollingText());//直接放在update会报错，why
 
