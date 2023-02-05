@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

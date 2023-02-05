@@ -210,6 +210,7 @@ public class BossDeadState : IState
     public void OnEnter()
     {
         //parameter.animator.Play("dead");
+        parameter.spriteRenderer.color = Color.gray;
         manager.Death();
     }
 

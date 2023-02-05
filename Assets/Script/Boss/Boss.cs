@@ -37,6 +37,7 @@ public class BossParmeter
     public int damage;
     public int count = 0;
     public Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
 }
 
 public class Boss : MonoBehaviour
@@ -70,6 +71,7 @@ public class Boss : MonoBehaviour
         parameter.animator = GetComponent<Animator>();
         //parameter.hitAnimation = transform.GetChild(2).GetComponent<Animator>();
         parameter.rb = GetComponent<Rigidbody2D>();
+        parameter.spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -95,7 +97,7 @@ public class Boss : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject, 3F);
+        Destroy(gameObject, 2F);
     }
 
     public void TransitionState(BossType type)
@@ -150,22 +152,22 @@ public class Boss : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log(collision.tag);
+            //Debug.Log(collision.tag);
             // 玩家退出视线范围时，把target置为空
             parameter.target = null;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        // 判断进入敌人视线碰撞体层级是否使Player
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log(collision.tag);
-            // 如果是，则把Player的位置给到target
-            parameter.target = collision.transform;
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    // 判断进入敌人视线碰撞体层级是否使Player
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        //Debug.Log(collision.tag);
+    //        // 如果是，则把Player的位置给到target
+    //        parameter.target = collision.transform;
+    //    }
+    //}
 
     #region 可以在屏幕上绘制一些图像的函数
 
