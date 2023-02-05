@@ -12,6 +12,8 @@ namespace Cinemachine.Examples
         public PlayableDirector timeLine2;
         public CinemachineVirtualCameraBase vcam;
         public bool onCam2;
+        public bool changeToCam1;
+        public PlayerMovement playerMovement;
         void Awake()
         { 
             if (instance != null)
@@ -29,18 +31,23 @@ namespace Cinemachine.Examples
         void Update()
         {
             //这里要改成死亡触发并且触发后人物无权移动
-            if(Input.GetKeyDown(KeyCode.Space)&&onCam2 ==false)
+            if(playerMovement.GetIsDead()&&onCam2 ==false)
             {
                 vcam.Priority = 8;
+                changeToCam1 = false;
                 timeLine1.Play();
-                onCam2 = true;
+                Invoke("GetOnCam2", 2.0f);
             }
-            if (Input.GetKeyDown(KeyCode.K)&&onCam2 ==true)//这里要改成剧情播完
+            if (changeToCam1 && onCam2 ==true)//这里要改成剧情播完
             {
                 vcam.Priority = 10;
                 onCam2 = false;
                 timeLine2.Play();
             }
+        }
+        void GetOnCam2()
+        {
+            onCam2 = true;
         }
     }
 }
