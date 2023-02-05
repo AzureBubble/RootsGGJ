@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sktest_urp.unity
     guid: cfe3ae6b1129ca64ab852648da9cb0a8
+  - enabled: 1
+    path: Assets/Scenes/end.unity
+    guid: dfc8c4125dafdb1438c1c57c1b2cf516
   m_configObjects: {}

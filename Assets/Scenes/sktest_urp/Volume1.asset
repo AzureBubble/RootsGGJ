@@ -98,8 +98,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.7728374
-          value: 0.21415883
+          time: 0.73241705
+          value: 0.28672588
           inSlope: 1
           outSlope: 1
           tangentMode: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.46140486, y: 0.56081903, z: 1, w: 0}
+    m_Value: {x: 0.5953809, y: 0.55402875, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9401308, z: 0.5265454, w: 0}
