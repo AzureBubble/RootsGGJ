@@ -260,6 +260,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Damage(int damage)
+    {
+        isHit = true;
+        currentHealth -= damage;
+        //hitDirection = direction;
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+            timeLine.SetIsDead();
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
     public void SetIsTalkTrue()
     {
         isTalk = true;
