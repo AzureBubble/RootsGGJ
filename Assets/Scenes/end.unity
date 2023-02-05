@@ -4821,6 +4821,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4246401912551486934, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246401912551486935, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246401912551486935, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.83
+      objectReference: {fileID: 0}
     - target: {fileID: 4246401912551486939, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_Camera
       value: 
@@ -4831,7 +4843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246401913428616101, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 126
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 4246401913428616101, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4851,11 +4863,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246401914019386602, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4246401914019386602, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
@@ -5398,7 +5410,12 @@ MonoBehaviour:
   talkabIndex: 0
   isTalking: 0
   timeLine: {fileID: 647002663}
-  playerPrefab: {fileID: 8011410187409669676, guid: f6ff1094428faf1478aea81fc40faa5e, type: 3}
+  playerAPrefab: {fileID: 0}
+  playerBPrefab: {fileID: 0}
+  playerCPrefab: {fileID: 0}
+  playerDPrefab: {fileID: 0}
+  swordPrefab: {fileID: 0}
+  jumpPrefab: {fileID: 0}
   playerTranform: {fileID: 1078403324}
   vcam1: {fileID: 349847992}
   vcam2: {fileID: 0}
