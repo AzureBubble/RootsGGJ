@@ -63,7 +63,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText[1 - dialogueIndex].enabled = false;
         dialogueText[dialogueIndex].enabled = true;
         SetTextAlign(_hasName);
-        //AudioManager.instance.PlaySound2D("dialogue");
+        AudioManager.instance.PlaySound2D("dialogue");
         StartCoroutine(ScrollingText(dialogueIndex));
 
         dialogueBox.SetActive(true);
@@ -90,7 +90,7 @@ public class DialogueManager : MonoBehaviour
                 currentLine++;
                 if (currentLine < dialogueLines.Length)
                 {
-                    //AudioManager.instance.PlaySound2D("dialogue");
+                    AudioManager.instance.PlaySound2D("dialogue");
                     CheckName();
                     dialogueText[1 - dialogueIndex].enabled = false;
                     dialogueText[dialogueIndex].enabled = true;

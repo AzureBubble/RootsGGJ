@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
 public class BossIdleState : IState
 {// 添加状态机的引用
     private Boss manager;
@@ -226,6 +227,8 @@ public class BossDeadState : IState
         //parameter.animator.Play("dead");
         parameter.spriteRenderer.color = Color.gray;
         manager.Death();
+        SceneManager.LoadScene("end", LoadSceneMode.Single);
+
     }
 
     public void OnUpdate()

@@ -266,7 +266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246401914019386601, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_Text
-      value: "\u8FD9\u6837\u5B89\u9038\u7684\u751F\u6D3B\uFF0C\u6216\u8005\u8E0F\u4E0A\u5192\u9669\u4E4B\u8DEF\uFF0C\u597D\u50CF\u90FD\u4E0D\u9519"
+      value: "\u5B89\u9038\u7684\u751F\u6D3B\u6216\u8005\u8E0F\u4E0A\u5192\u9669\u4E4B\u8DEF\uFF0C\u597D\u50CF\u90FD\u4E0D\u9519"
       objectReference: {fileID: 0}
     - target: {fileID: 4246401914019386601, guid: ac338fe8efbd0aa4192b13c6d22a0949, type: 3}
       propertyPath: m_FontData.m_Font
@@ -3148,7 +3148,7 @@ MonoBehaviour:
   priority: -1.5
   blendDistance: 0
   weight: 0.364
-  sharedProfile: {fileID: 11400000, guid: 43d43a937e5c80f4bb8ed5196ce96193, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 7cb93f3a35264f8488656f5ba410a9a9, type: 2}
 --- !u!4 &1177399113
 Transform:
   m_ObjectHideFlags: 0
