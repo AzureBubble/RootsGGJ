@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGround;
     private float speed;
     private Animator anim;
-    private int maxHealth = 4;
+    public int maxHealth = 4;
     private int currentHealth;
 
     [Header("Player ����")]
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float lerpSpeed = 3;
     public GameObject playerB;
     public CinemachineVirtualCamera cam1, cam2;
+    public bool bossIsDead =false;
 
     private bool canJump;
     private bool isAttack;
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Time.time >= (lastTimer + coolTime))
             {
+                AudioManager.instance.PlaySound2D("misshit");
                 lastTimer = Time.time;
                 anim.SetTrigger("longAttack");
                 cdImage.fillAmount = 1;
@@ -292,5 +294,9 @@ public class PlayerMovement : MonoBehaviour
     public bool GetIsDead()
     {
         return isDead;
+    }
+    public void SetIsDead()
+    {
+        isDead = true;
     }
 }

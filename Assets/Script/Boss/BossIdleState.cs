@@ -227,7 +227,9 @@ public class BossDeadState : IState
         //parameter.animator.Play("dead");
         parameter.spriteRenderer.color = Color.gray;
         manager.Death();
-        SceneManager.LoadScene("end", LoadSceneMode.Single);
+        GameObject.Find("PlayerB").GetComponent<PlayerMovement>().SetIsDead();
+        GameObject.Find("PlayerB").GetComponent<PlayerMovement>().bossIsDead = true;
+
 
     }
 

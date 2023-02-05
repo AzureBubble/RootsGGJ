@@ -10,7 +10,7 @@ public class turret : MonoBehaviour
     public GameObject target;
     public Transform muzzple;
     public float interval = 1.0f;
-    private int health = 5;
+    private int health = 10;
     private Animator animator;
 
     public float timer;
