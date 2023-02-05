@@ -254,6 +254,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isDead = true;
             timeLine.SetIsDead();
+            anim.SetTrigger("isDead");
             //Destroy(gameObject);
             gameObject.SetActive(false);
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -13,7 +13,8 @@ namespace Cinemachine.Examples
         public CinemachineVirtualCameraBase vcam;
         public bool onCam2;
         public bool changeToCam1;
-        public PlayerMovement playerMovement;
+
+        //public PlayerMovement playerMovement;
         private bool isDead;
 
         private void Awake()

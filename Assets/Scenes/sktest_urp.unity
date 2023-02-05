@@ -1524,7 +1524,6 @@ MonoBehaviour:
   vcam: {fileID: 349847992}
   onCam2: 0
   changeToCam1: 0
-  playerMovement: {fileID: 0}
 --- !u!4 &647002664
 Transform:
   m_ObjectHideFlags: 0
@@ -4096,7 +4095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109363513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0019627, y: 1.9574984, z: -10.94109}
+  m_LocalPosition: {x: -19.619986, y: 1.1917003, z: -62.26361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4363,7 +4362,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 8011410187409669676, guid: f6ff1094428faf1478aea81fc40faa5e, type: 3}
   playerTranform: {fileID: 1078403324}
   vcam1: {fileID: 349847992}
-  vcam2: {fileID: 0}
+  vcam2: {fileID: 2109363514}
 --- !u!224 &1140656506055999301
 RectTransform:
   m_ObjectHideFlags: 0

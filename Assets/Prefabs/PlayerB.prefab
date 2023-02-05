@@ -83,7 +83,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7090568754400391241
 Transform:
   m_ObjectHideFlags: 0
@@ -277,3 +277,5 @@ MonoBehaviour:
   hitSpeed: 30
   hitDirection: {x: 0, y: 0}
   playerB: {fileID: 7090568754400391245}
+  isTalk: 0
+  isDead: 0
