@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText[1 - dialogueIndex].enabled = false;
         dialogueText[dialogueIndex].enabled = true;
         SetTextAlign(_hasName);
-
+        AudioManager.instance.PlaySound2D("dialogue");
         StartCoroutine(ScrollingText(dialogueIndex));
 
         dialogueBox.SetActive(true);
@@ -83,11 +83,12 @@ public class DialogueManager : MonoBehaviour
         if (dialogueBox.activeInHierarchy)//只在激活panel时检测按下左键
         {
             //按下并松开左键
-            if (Input.GetKeyDown(KeyCode.L) && !isScrolling)//Input.GetMouseButtonUp(0)
+            if (Input.GetMouseButtonUp(0) && !isScrolling)//Input.GetMouseButtonUp(0)
             {
                 currentLine++;
                 if (currentLine < dialogueLines.Length)
                 {
+                    AudioManager.instance.PlaySound2D("dialogue");
                     CheckName();
                     dialogueText[1 - dialogueIndex].enabled = false;
                     dialogueText[dialogueIndex].enabled = true;

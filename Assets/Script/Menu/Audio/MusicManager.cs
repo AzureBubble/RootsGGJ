@@ -69,16 +69,15 @@ public class MusicManager : MonoBehaviour
     {
         AudioClip clipToPlay = null;
 
-        if (sceneName == "Menu")
+        if (sceneName == "Menu1")
         {
             clipToPlay = menuTheme;
         }
-        //todoelse if():商店老板界面播放老板的音乐
         else if(sceneName == "ShopScene")
         {
             clipToPlay = shopTheme;
         }
-        else  if (sceneName == "RunRoom")
+        else  if (sceneName == "sktest_urp")
         {
             clipToPlay = mainTheme;
         }

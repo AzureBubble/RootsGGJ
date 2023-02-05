@@ -484,7 +484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 76}
+  m_AnchoredPosition: {x: 5, y: -38}
   m_SizeDelta: {x: 1069.5244, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &341510917
@@ -2117,7 +2117,7 @@ MonoBehaviour:
   needImage:
   - {fileID: 21300000, guid: 0643b8fb991ade6459556533ed39efc0, type: 3}
   - {fileID: 21300000, guid: 0643b8fb991ade6459556533ed39efc0, type: 3}
-  - {fileID: 21300000, guid: 184fb34bf18edc5489c947962d4e4273, type: 3}
+  - {fileID: 21300000, guid: 0643b8fb991ade6459556533ed39efc0, type: 3}
   nowImage: {fileID: 1160563673}
   dialogueBox: {fileID: 628331152}
   dialogueText: {fileID: 341510917}
@@ -2660,7 +2660,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.041687, y: 125}
+  m_AnchoredPosition: {x: -5, y: 11}
   m_SizeDelta: {x: 1295.3401, y: 781.3162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1160563672
@@ -3386,48 +3386,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundGroups:
-  - groupID: answrong
+  - groupID: bossAttack
     group:
-    - {fileID: 8300000, guid: d9e30550622c5a547851b5579390a661, type: 3}
-  - groupID: ansdui
-    group:
-    - {fileID: 8300000, guid: c9896784f3b0bdb4f9d6c0ac71269268, type: 3}
-  - groupID: shibai
-    group:
-    - {fileID: 8300000, guid: dcc2b5bd25fc8a14cb0908c0ac89ca48, type: 3}
-  - groupID: fallnose
-    group:
-    - {fileID: 8300000, guid: a81853ae64c2bd044ac232dc1dd80738, type: 3}
-  - groupID: grownose
-    group:
-    - {fileID: 8300000, guid: 378a156c6dddbff408adabab4743434d, type: 3}
-  - groupID: Die
-    group:
-    - {fileID: 8300000, guid: 39923fe146f57714faa41b66a3c6e94b, type: 3}
-  - groupID: Door
-    group:
-    - {fileID: 8300000, guid: 58cfbd8e225ffe84893168bddfb8b7ba, type: 3}
-  - groupID: ErrorTip
-    group:
-    - {fileID: 8300000, guid: 8e50d126fd6e5c340aec5f6bec4a578b, type: 3}
-  - groupID: GetSkill
+    - {fileID: 8300000, guid: 38ac259e802003b40ad02a581a7d3a7b, type: 3}
+  - groupID: getSkill
     group:
     - {fileID: 8300000, guid: cc2e9371bb93b8c438575a304aa41df8, type: 3}
-  - groupID: Gun
+  - groupID: hit
     group:
-    - {fileID: 8300000, guid: c17e18ae61c7a3241914f7926c12b417, type: 3}
-  - groupID: TimeTip
+    - {fileID: 8300000, guid: bc1e09fa245ae9f4580613038f73c0a8, type: 3}
+  - groupID: misshit
     group:
-    - {fileID: 8300000, guid: 601da43de22ed584c95b03466902cef9, type: 3}
-  - groupID: TP
+    - {fileID: 8300000, guid: ac0b507f425635746b6e4d51a2e73a9d, type: 3}
+  - groupID: dialogue
     group:
-    - {fileID: 8300000, guid: af7af575c0e5edf45a1e733f17837007, type: 3}
-  - groupID: Weapon
-    group:
-    - {fileID: 8300000, guid: 8df735bd79c56804ab354d14c72ba37e, type: 3}
-  - groupID: Wweapon
-    group:
-    - {fileID: 8300000, guid: 9082fd0b37e713249a319b24dce676ab, type: 3}
+    - {fileID: 8300000, guid: 70efe85369b728e48a4f49c1a2b03b33, type: 3}
 --- !u!114 &1646424218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3440,9 +3413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaaddb38bd3f72144bf1230debdc84d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTheme: {fileID: 8300000, guid: 92015e1ef55abc64cad30ad11b6fe911, type: 3}
-  shopTheme: {fileID: 8300000, guid: d510a55ed34c712409b2441ac53b23be, type: 3}
-  menuTheme: {fileID: 8300000, guid: d510a55ed34c712409b2441ac53b23be, type: 3}
+  mainTheme: {fileID: 8300000, guid: 30e11d855ce27b84da882bc8000aabd5, type: 3}
+  shopTheme: {fileID: 8300000, guid: 6f65ebc118439644d8857a3de2db2244, type: 3}
+  menuTheme: {fileID: 8300000, guid: 6f65ebc118439644d8857a3de2db2244, type: 3}
   happyTheme: {fileID: 8300000, guid: a5d752f194226e8499b3d811801493bf, type: 3}
 --- !u!114 &1646424219
 MonoBehaviour:
@@ -3821,7 +3794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6309\u7A7A\u683C\u952E\u952E\u7EE7\u7EED..."
+  m_Text: "\u9F20\u6807\u5DE6\u952E\u7EE7\u7EED..."
 --- !u!222 &1913520338
 CanvasRenderer:
   m_ObjectHideFlags: 0
